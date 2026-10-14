@@ -643,7 +643,7 @@ p {
   inset: 0;
   background: url("../assets/patterns/60913917_abstract_pattern_design_background_2007%20%5BConverted%5D.svg")
     center / cover no-repeat;
-  opacity: 0.14;
+  opacity: 0.06;
 }
 
 .shop-cta-inner {
@@ -2275,10 +2275,10 @@ p {
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: url("../assets/patterns/428334712_5c46d7d0-2fbe-4ac5-9542-dc7eba02b14f.svg")
+  background: url("../assets/patterns/60913917_abstract_pattern_design_background_2007%20%5BConverted%5D.svg")
     center / cover no-repeat;
   content: "";
-  opacity: 0.14;
+  opacity: 0.12;
   pointer-events: none;
 }
 
