@@ -16,7 +16,7 @@ const componentTemplates = {
 
         <button
           class="menu-toggle"
-          aria-label="Open navigation"
+          aria-label="Open menu"
           aria-expanded="false"
           aria-controls="nav-links"
         >
@@ -26,6 +26,14 @@ const componentTemplates = {
         </button>
 
         <div class="nav-links" id="nav-links">
+          <div class="nav-links-header">
+            <span>Explore Nganzi</span>
+            <button class="nav-close" type="button" aria-label="Close navigation menu">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m6 6 12 12M18 6 6 18" />
+              </svg>
+            </button>
+          </div>
           <a href="${aboutHref}">About Us</a>
           <a href="${coffeeHref}">Coffee</a>
           <a href="${contactHref}">Contact</a>
@@ -126,12 +134,17 @@ componentTargets.forEach((target) => {
 
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
+const menuClose = document.querySelector(".nav-close");
 
 if (menuToggle && navLinks) {
-  function closeMenu() {
+  function closeMenu({ restoreFocus = false } = {}) {
     navLinks.classList.remove("is-open");
     menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Open navigation");
+    menuToggle.setAttribute("aria-label", "Open menu");
+
+    if (restoreFocus) {
+      menuToggle.focus();
+    }
   }
 
   menuToggle.addEventListener("click", () => {
@@ -140,9 +153,11 @@ if (menuToggle && navLinks) {
     menuToggle.setAttribute("aria-expanded", String(isOpen));
     menuToggle.setAttribute(
       "aria-label",
-      isOpen ? "Close navigation" : "Open navigation"
+      isOpen ? "Close menu" : "Open menu"
     );
   });
+
+  menuClose?.addEventListener("click", () => closeMenu({ restoreFocus: true }));
 
   navLinks.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", closeMenu);
@@ -150,6 +165,12 @@ if (menuToggle && navLinks) {
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
+      closeMenu({ restoreFocus: true });
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
       closeMenu();
     }
   });
