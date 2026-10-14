@@ -1,17 +1,39 @@
 
 const isInPagesFolder = window.location.pathname.includes("/pages/");
-const homeHref = isInPagesFolder ? "../index.html" : "index.html";
-const contactHref = isInPagesFolder ? "./contact.html" : "pages/contact.html";
-const coffeeHref = isInPagesFolder ? "./coffee.html" : "pages/coffee.html";
-const aboutHref = isInPagesFolder ? "./about.html" : "pages/about.html";
-const shopHref = isInPagesFolder ? "./shop.html" : "pages/shop.html";
+const isInPoliciesFolder = window.location.pathname.includes("/policies/");
+const isInNestedFolder = isInPagesFolder || isInPoliciesFolder;
+const homeHref = isInNestedFolder ? "../index.html" : "index.html";
+const contactHref = isInPagesFolder
+  ? "./contact.html"
+  : isInPoliciesFolder
+    ? "../pages/contact.html"
+    : "pages/contact.html";
+const coffeeHref = isInPagesFolder
+  ? "./coffee.html"
+  : isInPoliciesFolder
+    ? "../pages/coffee.html"
+    : "pages/coffee.html";
+const aboutHref = isInPagesFolder
+  ? "./about.html"
+  : isInPoliciesFolder
+    ? "../pages/about.html"
+    : "pages/about.html";
+const shopHref = isInPagesFolder
+  ? "./shop.html"
+  : isInPoliciesFolder
+    ? "../pages/shop.html"
+    : "pages/shop.html";
+const privacyPolicyHref =
+  isInPagesFolder || isInPoliciesFolder
+    ? "../policies/privacy-policy.html"
+    : "policies/privacy-policy.html";
 
 const componentTemplates = {
   navbar: `
     <header class="site-header">
       <nav class="navbar container" aria-label="Main navigation">
         <a href="${homeHref}" class="brand" aria-label="Nganzi Coffee homepage">
-          <img src="${isInPagesFolder ? "../assets/images/logo.svg" : "assets/images/logo.svg"}" alt="Nganzi Coffee" />
+          <img src="${isInNestedFolder ? "../assets/images/logo.svg" : "assets/images/logo.svg"}" alt="Nganzi Coffee" />
         </a>
 
         <button
@@ -52,7 +74,7 @@ const componentTemplates = {
       <div class="container footer-grid">
         <div class="footer-brand">
           <a href="${homeHref}" class="footer-logo">
-            <img src="${isInPagesFolder ? "../assets/images/logo.svg" : "assets/images/logo.svg"}" alt="Nganzi Coffee" />
+            <img src="${isInNestedFolder ? "../assets/images/logo.svg" : "assets/images/logo.svg"}" alt="Nganzi Coffee" />
           </a>
 
           <div class="footer-divider" aria-hidden="true"></div>
@@ -117,7 +139,7 @@ const componentTemplates = {
 
       <div class="container footer-bottom">
         <p>© 2026 Nganzi Coffee. All rights reserved.</p>
-        <a href="/policies/privacy-policy">Privacy Policy</a>
+        <a href="${privacyPolicyHref}">Privacy Policy</a>
       </div>
     </footer>
   `
@@ -183,6 +205,42 @@ if (menuToggle && navLinks) {
 }
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+document.querySelectorAll("[data-product-carousel]").forEach((carousel) => {
+  const track = carousel.querySelector(".product-grid");
+  const previous = carousel.querySelector(".product-carousel-arrow-previous");
+  const next = carousel.querySelector(".product-carousel-arrow-next");
+
+  if (!track || !previous || !next) {
+    return;
+  }
+
+  const updateArrows = () => {
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    previous.disabled = track.scrollLeft <= 1;
+    next.disabled = track.scrollLeft >= maxScroll - 1;
+  };
+
+  const scrollByCard = (direction) => {
+    const card = track.querySelector(".product-card");
+    if (!card) {
+      return;
+    }
+
+    const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+    track.scrollBy({
+      left: direction * (card.getBoundingClientRect().width + gap),
+      behavior: reduceMotion.matches ? "auto" : "smooth"
+    });
+  };
+
+  previous.addEventListener("click", () => scrollByCard(-1));
+  next.addEventListener("click", () => scrollByCard(1));
+  track.addEventListener("scroll", updateArrows, { passive: true });
+  window.addEventListener("resize", updateArrows);
+  updateArrows();
+});
+
 const revealElements = document.querySelectorAll(
   "main > section:not(.hero) .section-heading, " +
     "main > section:not(.hero) article, " +
