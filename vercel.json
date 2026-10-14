@@ -1,0 +1,11 @@
+{
+  "cleanUrls": true,
+  "routes": [
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/about", "dest": "/pages/about.html" },
+    { "src": "/coffee", "dest": "/pages/coffee.html" },
+    { "src": "/contact", "dest": "/pages/contact.html" },
+    { "src": "/shop", "dest": "/pages/shop.html" },
+    { "src": "/policies/privacy-policy", "dest": "/pages/privacy-policy.html" }
+  ]
+}
