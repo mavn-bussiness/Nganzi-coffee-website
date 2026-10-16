@@ -2344,6 +2344,10 @@ p {
   );
 }
 
+.about-story-hero .eyebrow {
+  color: white;
+}
+
 .about-story-hero-content {
   position: relative;
   z-index: 1;
@@ -2378,8 +2382,39 @@ p {
   object-position: center;
 }
 
+.story-image-tag {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 12px 20px;
+  background: var(--orange);
+  color: var(--brown);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .story-origin-copy {
   max-width: 560px;
+}
+
+.story-product-sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 28px 0 12px;
+}
+
+.story-product-sizes span {
+  min-width: 66px;
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  color: var(--brown);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .policy-copy {
@@ -2413,9 +2448,128 @@ p {
   margin-top: 12px;
 }
 
+.story-export {
+  background: var(--paper);
+}
+
+.story-export-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+  align-items: end;
+  gap: 64px;
+  margin-bottom: 38px;
+  padding-bottom: 34px;
+  border-bottom: 1px solid var(--border);
+}
+
+.story-export-heading h2 {
+  margin-bottom: 12px;
+  color: var(--brown);
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+}
+
+.story-export-heading .script-accent {
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+}
+
+.story-export-heading > p {
+  color: var(--brown-light);
+  font-size: 1rem;
+  line-height: 1.8;
+  text-align: right;
+}
+
+.story-export-content {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr) minmax(180px, 0.85fr);
+  align-items: start;
+  gap: 38px;
+}
+
+.story-export-context h3 {
+  margin-bottom: 18px;
+  color: var(--brown);
+  font-size: 1.7rem;
+  line-height: 1.3;
+}
+
+.story-export-context > p {
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.75;
+}
+
+.export-journey {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 34px 28px;
+  list-style: none;
+}
+
+.export-journey li {
+  min-width: 0;
+}
+
+.export-journey li > span {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--orange-hover);
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.export-journey h3 {
+  margin-bottom: 8px;
+  color: var(--brown);
+  font-size: 1.12rem;
+  line-height: 1.4;
+}
+
+.export-journey p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.story-export-images {
+  display: grid;
+  gap: 18px;
+}
+
+.story-export-images img {
+  height: clamp(150px, 16vw, 220px);
+  border-radius: 18px;
+}
+
+.story-vision {
+  margin-top: 28px;
+  padding: 0 0 0 18px;
+  border-left: 2px solid var(--orange);
+}
+
+.story-vision .eyebrow {
+  margin-bottom: 6px;
+}
+
+.story-vision > p:last-child {
+  color: var(--brown);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
 .story-women {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   scroll-margin-top: 24px;
   padding-block: 90px;
+  background: var(--paper);
+}
+
+.story-women-farmers {
   background: var(--paper);
 }
 
@@ -2440,6 +2594,37 @@ p {
 .story-women-image img {
   height: clamp(360px, 45vw, 580px);
   object-position: center;
+}
+
+.founder-image {
+  overflow: hidden;
+}
+
+.founder-image figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(56, 38, 30, 0.9);
+  color: white;
+}
+
+.founder-image figcaption span {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.founder-image figcaption strong {
+  color: var(--orange);
+  font-family: var(--font-script);
+  font-size: 2rem;
+  line-height: 1;
 }
 
 .story-processing {
@@ -2475,6 +2660,40 @@ p {
   color: var(--brown-light);
   font-size: 1.1rem;
   line-height: 1.75;
+}
+
+.roaster-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.roaster-gallery figure {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--brown);
+}
+
+.roaster-gallery img {
+  height: clamp(220px, 24vw, 330px);
+  transition: transform 300ms ease;
+}
+
+.roaster-gallery figure:hover img {
+  transform: scale(1.04);
+}
+
+.roaster-gallery figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 30px 16px 14px;
+  background: linear-gradient(transparent, rgba(28, 19, 14, 0.78));
+  color: white;
+  font-size: 0.88rem;
+  font-weight: 600;
 }
 
 .processing-steps {
@@ -2573,6 +2792,26 @@ p {
     gap: 38px;
   }
 
+  .story-export-heading {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .story-export-heading > p {
+    max-width: 680px;
+    text-align: left;
+  }
+
+  .story-export-content {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 38px;
+  }
+
+  .story-export-images {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .story-origin-image {
     min-height: 380px;
   }
@@ -2584,6 +2823,10 @@ p {
 
   .story-women-image {
     width: 100%;
+  }
+
+  .roaster-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .story-women-image img {
@@ -2642,9 +2885,52 @@ p {
     padding-block: 68px;
   }
 
+  .story-export {
+    padding-block: 68px;
+  }
+
+  .story-export-heading h2 {
+    font-size: clamp(2.4rem, 10vw, 3.2rem);
+  }
+
+  .story-export-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .export-journey {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .export-journey li > span {
+    margin-bottom: 14px;
+  }
+
+  .story-vision {
+    margin-top: 24px;
+  }
+
+  .story-export-images {
+    grid-column: auto;
+  }
+
   .story-women-image img {
     height: 105vw;
     max-height: 540px;
+  }
+
+  .roaster-gallery {
+    gap: 12px;
+  }
+
+  .roaster-gallery img {
+    height: 220px;
+  }
+
+  .roaster-gallery figcaption {
+    padding: 26px 10px 10px;
+    font-size: 0.74rem;
   }
 
   .processing-steps {
